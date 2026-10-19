@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard - Data Link AI</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                Data Link AI
+            </div>
+
+            <nav>
+
+                <a href="/dashboard.html" class="active">
+                    Dashboard
+                </a>
+
+                <a href="#">
+                    Upload Data
+                </a>
+
+                <a href="#">
+                    My Files
+                </a>
+
+                <a href="#">
+                    Analysis
+                </a>
+
+                <a href="#">
+                    History
+                </a>
+
+            </nav>
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+            >
+                Logout
+            </button>
+
+        </aside>
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Dashboard</h1>
+
+                    <p>
+                        Manage and analyze your data
+                    </p>
+                </div>
+
+                <div
+                    id="userName"
+                    class="user-name"
+                >
+                </div>
+
+            </header>
+
+
+            <!-- Welcome -->
+            <section class="welcome-card">
+
+                <h2>
+                    Welcome to Data Link AI 👋
+                </h2>
+
+                <p>
+                    Upload your data and let Data Link AI
+                    transform it into meaningful insights.
+                </p>
+
+            </section>
+
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        Total Files
+                    </span>
+
+                    <strong id="totalFiles">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Analyses
+                    </span>
+
+                    <strong id="totalAnalyses">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Data Processed
+                    </span>
+
+                    <strong id="dataProcessed">
+                        0 MB
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- Upload Section -->
+            <section class="upload-card">
+
+                <div>
+
+                    <h2>
+                        Analyze your data
+                    </h2>
+
+                    <p>
+                        Upload CSV or Excel files to get
+                        started.
+                    </p>
+
+                </div>
+
+
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <label for="fileInput" class="upload-button">Choose CSV or Excel File</label>
+                    <input type="file" id="fileInput" name="file" accept=".csv,.xlsx,.xls" required>
+                    <button type="submit">Upload Dataset</button>
+                </form>
+                <p id="fileName"></p>
+                <p id="uploadMessage" role="status" aria-live="polite"></p>
+                <p id="uploadStatus"></p>
+
+            </section>
+            
+            <section class="recent-card">
+                <h2>Your Datasets</h2>
+                <div id="filesList"><p class="empty-state">Loading datasets...</p></div>
+            </section>
+
+            <section class="recent-card" id="analysisCard" style="display:none">
+                <h2>Dataset Analysis</h2>
+                <p id="analysisFileName"></p>
+                <div class="stats-grid">
+                    <div class="stat-card"><span>Rows</span><strong id="rowCount">0</strong></div>
+                    <div class="stat-card"><span>Columns</span><strong id="columnCount">0</strong></div>
+                    <div class="stat-card"><span>Missing Values</span><strong id="missingCount">0</strong></div>
+                    <div class="stat-card"><span>Duplicate Rows</span><strong id="duplicateCount">0</strong></div>
+                </div>
+                <h3>Data Preview</h3>
+                <div id="previewContainer"></div>
+                <h3>Data Quality</h3>
+                <div id="qualityReport"></div>
+                <h3>Column Details</h3>
+                <div id="columnDetails"></div>
+                <div id="cleaningControls"></div>
+                <div id="emptyColumnsResults"></div>
+            </section>
+
+            <!-- Add-on: AI Analysis and AI Agent. Existing dashboard features remain intact. -->
+            <section class="recent-card ai-feature-card" id="aiAnalysisPanel">
+                <h2>AI Dataset Analysis</h2>
+                <p>Generate dataset-specific quality insights and practical cleaning recommendations.</p>
+                <div class="ai-controls">
+                    <label for="aiDatasetSelect">Choose a dataset</label>
+                    <select id="aiDatasetSelect"><option value="">Loading your datasets...</option></select>
+                    <button type="button" id="runAiAnalysis">Run AI Analysis</button>
+                </div>
+                <p id="aiAnalysisStatus" role="status" aria-live="polite"></p>
+                <div id="aiAnalysisOutput" class="ai-output" aria-live="polite"></div>
+            </section>
+
+            <section class="recent-card ai-feature-card" id="aiAgentPanel">
+                <h2>Data Link AI Agent</h2>
+                <p>Ask questions about data quality, missing values, duplicate rows, columns, or cleaning strategy.</p>
+                <form id="aiAgentForm">
+                    <label for="aiAgentDataset">Dataset context (optional)</label>
+                    <select id="aiAgentDataset"><option value="">No dataset selected</option></select>
+                    <label for="aiAgentMessage">Your question</label>
+                    <textarea id="aiAgentMessage" rows="3" maxlength="2000" placeholder="Example: What should I fix first in this dataset?" required></textarea>
+                    <button type="submit" id="aiAgentSend">Ask AI Agent</button>
+                </form>
+                <p id="aiAgentStatus" role="status" aria-live="polite"></p>
+                <div id="aiAgentAnswer" class="ai-output" aria-live="polite"></div>
+            </section>
+
+            <section class="recent-card">
+                <h2>Recent Activity</h2>
+                <div id="recentActivity"><p class="empty-state">Your recent activity will appear here.</p></div>
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <link rel="stylesheet" href="/css/ai-agent.css">
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/ai-agent.js"></script>
+
+</body>
+
+</html>
