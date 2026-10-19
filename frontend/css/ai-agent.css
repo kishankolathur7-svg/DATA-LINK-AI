@@ -1,0 +1,12 @@
+/* Additive styles for AI features; existing style.css is unchanged. */
+.ai-feature-card { margin-top: 22px; }
+.ai-controls, #aiAgentForm { display: grid; gap: 10px; max-width: 760px; }
+.ai-feature-card label { font-weight: 600; }
+.ai-feature-card select, .ai-feature-card textarea { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; background: #fff; color: #172033; }
+.ai-feature-card textarea { resize: vertical; }
+.ai-feature-card button { width: fit-content; padding: 10px 16px; border: 0; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.ai-output { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; margin-top: 12px; }
+.ai-output:empty { display: none; }
+.ai-insight-list { padding-left: 22px; }
+.ai-mode-note { color: #64748b; font-size: .9rem; }
+.ai-feature-card [role="status"] { min-height: 1.2em; }

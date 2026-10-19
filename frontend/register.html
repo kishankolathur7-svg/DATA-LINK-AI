@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Data Link AI</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="auth-container">
+    <h1>Data Link AI</h1>
+    <h2>Create Account</h2>
+    <form id="registerForm">
+      <input type="text" id="name" name="name" placeholder="Full name" autocomplete="name" required maxlength="100">
+      <input type="email" id="email" name="email" placeholder="Email address" autocomplete="email" required maxlength="254">
+      <input type="password" id="password" name="password" placeholder="Password (at least 6 characters)" autocomplete="new-password" minlength="6" required>
+      <button type="submit">Register</button>
+    </form>
+    <p id="registerMessage" role="status" aria-live="polite"></p>
+    <p>Already have an account? <a href="/login.html">Login</a></p>
+  </main>
+  <script src="/js/auth.js"></script>
+</body>
+</html>
